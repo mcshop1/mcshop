@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POE2 디바인 구매하기</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>POE2 디바인 구매하기</h1>
+        <h2>2025/02/19 현재 거래가능  1개당 280원   <span class="max-quantity">현재 구매가능 최대갯수 : 1100개</span></h2>
+        <form action="/buy" method="POST">
+            <div class="form-group">
+                <label for="characterName">캐릭터명</label>
+                <input type="text" id="characterName" name="characterName" required>
+            </div>
+            <div class="form-group">
+                <label for="depositorName">입금자명</label>
+                <input type="text" id="depositorName" name="depositorName" required>
+            </div>
+            <div class="form-group">
+                <label for="phoneNumber">전화번호</label>
+                <input type="text" id="phoneNumber" name="phoneNumber" required>
+            </div>
+            <div class="form-group">
+                <label for="quantity">수량</label>
+                <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+            </div>
+            <div class="form-group">
+                <p>가격: <span id="totalPrice">280</span> 원</p>
+            </div>
+            <button type="submit">구매하기</button>
+        </form>
+
+        <!-- 고객센터 문의하기 버튼 추가 -->
+        <a href="https://open.kakao.com/o/sIqXVTgh" target="_blank">
+            <button type="button" class="support-btn">카카오톡 고객센터 문의하기</button>
+        </a>
+
+        <!-- 구매방법 (필수확인) 버튼 추가 -->
+        <button type="button" class="method-btn" onclick="showMethod()">구매방법 (필수확인)</button>
+    </div>
+
+    <script>
+        const quantityInput = document.getElementById('quantity');
+        const totalPrice = document.getElementById('totalPrice');
+
+        quantityInput.addEventListener('input', () => {
+            const quantity = quantityInput.value;
+            totalPrice.textContent = 280 * quantity; // 1개당 280원 계산
+        });
+
+        // 구매방법 (필수확인) 버튼 클릭 시 팝업 띄우기
+        function showMethod() {
+            const message = `
+                [구매방법 안내]
+                1. 고객센터 문의하기를 누르시고 카카오톡으로
+                구매가능상태인지 체크해주세요.
+
+                2. 구매가능상태라면, 정보를 입력후 
+                구매하기 누르시고 입금해주세요.
+
+                3. 입금이 확인되면 5~10분내로 귓말후에
+                파티초대를 드리니 제 은신처로 와주시면됩니다.
+
+                4. 받으실 때 노란색(희귀)장비 
+                한개는 필수로 올려주세요.
+                
+                4. 문의 사항은 고객센터로 연락 부탁드립니다.
+
+                ※ 반드시 확인 후 구매 진행 부탁드립니다!
+            `;
+            alert(message);
+        }
+    </script>
+</body>
+</html>
